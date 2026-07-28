@@ -5,9 +5,28 @@ const User = require("../models/user"); // Sequelize model for the users table
 const { Op } = require("sequelize"); // Sequelize operators (e.g. Op.or for "OR" queries)
 const authMiddleware = require("../middleware/auth");
 
-// POST /api/auth/me — get current authenitcated user
+// GET /api/auth/me — returns the currently logged-in user, based on their token
 router.get("/me", authMiddleware, async (req, res) => {
-  res.json({ user: req.user });
+  try {
+    // authMiddleware already verified the token and attached the user's id to req.user
+    const user = await User.findByPk(req.user.id);
+
+    // Token was valid, but this user no longer exists in the database
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Send back only safe fields — never the password hash
+    res.json({
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
 // POST /api/auth/register — creates a new user account
