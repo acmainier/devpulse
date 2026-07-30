@@ -2,7 +2,7 @@ import { Nav } from "./Nav";
 
 export function Header() {
   return (
-    <header>
+    <header className="header-main">
       <div>
         <h1>DevPulse</h1>
         <Nav />
