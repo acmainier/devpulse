@@ -1,0 +1,17 @@
+.header-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  padding-left: 34px;
+}
+
+.header-inner h1 {
+  font-size: 32px;
+  margin: 0;
+}
+
+.header-inner nav {
+  justify-self: center;
+}

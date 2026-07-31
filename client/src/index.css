@@ -91,12 +91,6 @@ p {
 }
 /* CSS rules for DevPulse */
 
-/* Header */
-
-.header-main {
-  border-bottom: 1px solid var(--border);
-}
-
 /* Main */
 
 .layout-body {
@@ -112,10 +106,4 @@ p {
 .layout-body main {
   flex: 1;
   min-width: 0; /* prevents content overflow in flex children */
-}
-
-/* Footer */
-
-.footer-main {
-  border-top: 1px solid var(--border);
 }
