@@ -7,12 +7,7 @@ export function Nav() {
         <li>
           <NavLink to="/feed">Feed</NavLink>
         </li>
-        <li>
-          <NavLink to="/login">Login</NavLink>
-        </li>
-        <li>
-          <NavLink to="/signup">Signup</NavLink>
-        </li>
+        <li>Create a Post</li>
       </ul>
     </nav>
   );

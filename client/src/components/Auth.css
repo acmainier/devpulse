@@ -1,0 +1,24 @@
+.auth-form {
+    padding: 8px;
+}
+
+.auth-field {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.auth-field input {
+    flex: 1;
+    align-self: center;
+}
+
+.auth-field label {
+    width: 90px;
+    flex-shrink: 0;
+}
+
+.auth-toggle {
+    text-align: left;
+    margin-top: 10px;
+}
