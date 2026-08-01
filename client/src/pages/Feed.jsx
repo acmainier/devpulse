@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Feed() {
   const [result, setResult] = useState({ state: "loading" });
 
   useEffect(() => {
     fetch(`http://localhost:3001/api/posts`)
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch posts");
+        }
+        return response.json();
+      })
       .then((posts) => {
         setResult({ state: "success", posts });
       })
@@ -32,7 +38,8 @@ function Feed() {
       <ul>
         {result.posts.map((post) => (
           <li key={post.id}>
-            {post.title} by {post.user.username} in
+            <Link to={`/posts/${post.id}`}>{post.title}</Link> by{" "}
+            {post.user.username} in
             {post.category.category_name}
           </li>
         ))}
