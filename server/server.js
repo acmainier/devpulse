@@ -1,9 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config(); // loads DB credentials and JWT_SECRET from .env into process.env
+require("./models");
 const sequelize = require("./config/connection"); // our configured MySQL connection
 const authRoutes = require("./routes/auth"); // register/login route handlers
-
+const postRoutes = require("./routes/post");
+const categoryRoutes = require("./routes/category");
 const app = express();
 const PORT = process.env.PORT || 3001; // use env value if set, otherwise default to 3001
 
@@ -14,9 +16,11 @@ app.use(express.json());
 app.use(cors());
 
 // --- Routes ---
-// Mounts everything defined in auth.js under the /api/auth prefix.
-// e.g. router.post("/register", ...) becomes reachable at POST /api/auth/register
+// Mounts each route file under its own API prefix.
+// e.g. router.post("/register", ...) in auth.js becomes reachable at POST /api/auth/register
 app.use("/api/auth", authRoutes);
+app.use("/api/posts", postRoutes);
+app.use("/api/categories", categoryRoutes);
 
 // --- Start server ---
 // sequelize.sync() checks our models (like User) and creates the matching
