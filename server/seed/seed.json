@@ -1,0 +1,40 @@
+{
+  "seedUser": {
+    "username": "seeduser",
+    "email": "seeduser@example.com",
+    "password": "password123"
+  },
+  "categories": ["Backend", "Frontend", "DevOps"],
+  "posts": [
+    {
+      "title": "Getting started with Express middleware",
+      "content": "Middleware functions run before your route handlers and can inspect, modify, or reject a request. Auth checks, logging, and body parsing are all classic use cases.",
+      "category": "Backend"
+    },
+    {
+      "title": "Why we switched from Mongoose to Sequelize",
+      "content": "MongoDB is great for flexible schemas, but once we needed real foreign keys between users, posts, and categories, a relational database made the relationships much easier to enforce.",
+      "category": "Backend"
+    },
+    {
+      "title": "Understanding JWTs in 5 minutes",
+      "content": "A JSON Web Token is a signed, not encrypted, blob of data. Anyone can read the payload, but only your server can verify it was actually issued by you.",
+      "category": "Backend"
+    },
+    {
+      "title": "Controlled inputs in React, explained",
+      "content": "A controlled input ties its displayed value directly to React state, so the UI and your data can never drift out of sync — every keystroke updates state, which re-renders the input.",
+      "category": "Frontend"
+    },
+    {
+      "title": "Why we built a custom axios wrapper",
+      "content": "Instead of repeating auth headers on every request, one preconfigured axios instance with interceptors handles attaching the token and catching 401s in a single place.",
+      "category": "Frontend"
+    },
+    {
+      "title": "Zero-downtime deploys with GitHub Actions",
+      "content": "Running migrations and restarting the server in the wrong order is the most common way to take a site down during a deploy. Here's the sequencing we settled on.",
+      "category": "DevOps"
+    }
+  ]
+}
