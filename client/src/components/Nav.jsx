@@ -7,7 +7,9 @@ export function Nav() {
         <li>
           <NavLink to="/feed">Feed</NavLink>
         </li>
-        <li>Create a Post</li>
+        <li>
+          <NavLink to="/newpost">New post</NavLink>
+        </li>
       </ul>
     </nav>
   );
