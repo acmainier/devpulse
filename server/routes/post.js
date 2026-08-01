@@ -28,7 +28,7 @@ router.post("/", authMiddleware, async (req, res) => {
 });
 
 // GET
-router.get("/", async (req, res) => {
+router.get("/", authMiddleware, async (req, res) => {
   try {
     const posts = await Post.findAll({
       include: [
@@ -44,7 +44,7 @@ router.get("/", async (req, res) => {
 });
 
 //GET by ID
-router.get("/:id", async (req, res) => {
+router.get("/:id", authMiddleware, async (req, res) => {
   try {
     const post = await Post.findByPk(req.params.id, {
       include: [

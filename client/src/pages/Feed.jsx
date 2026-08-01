@@ -1,11 +1,26 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function Feed() {
-  const [result, setResult] = useState({ state: "loading" });
+  const { user } = useAuth();
+  const token = user ? localStorage.getItem("token") : null;
+
+  const [result, setResult] = useState(
+    token
+      ? { state: "loading" }
+      : { state: "error", error: new Error("User not authenticated") },
+  );
 
   useEffect(() => {
-    fetch(`http://localhost:3001/api/posts`)
+    if (!token) {
+      return;
+    }
+    fetch(`http://localhost:3001/api/posts`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch posts");
@@ -18,7 +33,7 @@ function Feed() {
       .catch((error) => {
         setResult({ state: "error", error });
       });
-  }, []);
+  }, [token]);
 
   if (result.state === "loading") {
     return <div>Loading...</div>;

@@ -1,13 +1,28 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
 function Post() {
+  const { user } = useAuth();
+  const token = user ? localStorage.getItem("token") : null;
   const { id } = useParams();
 
-  const [result, setResult] = useState({ state: "loading" });
+  const [result, setResult] = useState(
+    token
+      ? { state: "loading" }
+      : { state: "error", error: new Error("User not authenticated") },
+  );
 
   useEffect(() => {
-    fetch(`http://localhost:3001/api/posts/${id}`)
+    if (!token) {
+      return;
+    }
+
+    fetch(`http://localhost:3001/api/posts/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Failed to get post ${id}`);
@@ -20,7 +35,7 @@ function Post() {
       .catch((error) => {
         setResult({ state: "error", error });
       });
-  }, [id]);
+  }, [id, token]);
 
   if (result.state === "loading") {
     return <div>Loading...</div>;
