@@ -69,7 +69,7 @@ export function Sidebar() {
 
   return (
     <aside className="sidebar">
-      <p>Check posts by category</p>
+      <p>Browse posts by category</p>
       <ul>
         {result.categories.map((category) => (
           <li key={category.id}>
@@ -82,8 +82,9 @@ export function Sidebar() {
           <Link to={`/feed`}>All Categories</Link>
         </li>
       </ul>
+      <p>Search posts' titles</p>
       <form onSubmit={onSearch}>
-        <input id="search" type="text" placeholder="Search posts..." />
+        <input id="search" type="text" placeholder="Enter keywords..." />
 
         <button type="submit">Search</button>
       </form>

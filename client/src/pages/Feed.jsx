@@ -63,6 +63,10 @@ function Feed() {
     <div>
       <h1>Feed</h1>
       <ul>
+        {categoryId && <li>Showing posts in category: {categoryId}</li>}
+        {searchQuery && <li>Showing search results for: {searchQuery}</li>}
+      </ul>
+      <ul>
         {result.posts.map((post) => (
           <li key={post.id}>
             <Link to={`/posts/${post.id}`}>{post.title}</Link> by{" "}
