@@ -13,7 +13,7 @@ export function AppRoutes() {
       <Route path="/feed" element={<Feed />} />
       <Route path="/newpost" element={<Newpost />} />
       <Route path="/results" element={<Results />} />
-      <Route path="/post" element={<Post />} />
+      <Route path="/posts/:id" element={<Post />} />
       <Route path="/contact" element={<Contact />} />
     </Routes>
   );

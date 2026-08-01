@@ -43,6 +43,26 @@ router.get("/", async (req, res) => {
   }
 });
 
+//GET by ID
+router.get("/:id", async (req, res) => {
+  try {
+    const post = await Post.findByPk(req.params.id, {
+      include: [
+        { model: User, attributes: ["id", "username"] },
+        { model: Category, attributes: ["id", "category_name"] },
+      ],
+    });
+
+    if (!post) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    res.json(post);
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 // PUT
 router.put("/:id", authMiddleware, async (req, res) => {
   try {
