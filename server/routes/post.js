@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Post, User, Category } = require("../models");
 const authMiddleware = require("../middleware/auth");
+const { Op } = require("sequelize");
 
 // POST
 router.post("/", authMiddleware, async (req, res) => {
@@ -30,7 +31,20 @@ router.post("/", authMiddleware, async (req, res) => {
 // GET
 router.get("/", authMiddleware, async (req, res) => {
   try {
+    const categoryId = req.query.categoryId;
+    const q = req.query.q;
+    const where = {};
+
+    if (categoryId) {
+      where.categoryId = categoryId;
+    }
+
+    if (q) {
+      where.title = { [Op.like]: `%${q}%` };
+    }
+
     const posts = await Post.findAll({
+      where,
       include: [
         { model: User, attributes: ["id", "username"] },
         { model: Category, attributes: ["id", "category_name"] },
