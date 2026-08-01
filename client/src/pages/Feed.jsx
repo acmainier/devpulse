@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useSearchParams } from "react-router";
 
 function Feed() {
   const { user } = useAuth();
@@ -11,12 +12,19 @@ function Feed() {
       ? { state: "loading" }
       : { state: "error", error: new Error("User not authenticated") },
   );
+  const [searchParams] = useSearchParams();
+  const categoryId = searchParams.get("categoryId");
+  console.log("categoryId:", categoryId);
 
   useEffect(() => {
     if (!token) {
       return;
     }
-    fetch(`http://localhost:3001/api/posts`, {
+    const postsUrl = new URL(`http://localhost:3001/api/posts`);
+    if (categoryId) {
+      postsUrl.searchParams.append("categoryId", categoryId);
+    }
+    fetch(postsUrl, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -33,7 +41,7 @@ function Feed() {
       .catch((error) => {
         setResult({ state: "error", error });
       });
-  }, [token]);
+  }, [token, categoryId]);
 
   if (result.state === "loading") {
     return <div>Loading...</div>;

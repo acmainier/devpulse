@@ -30,7 +30,9 @@ router.post("/", authMiddleware, async (req, res) => {
 // GET
 router.get("/", authMiddleware, async (req, res) => {
   try {
+    const categoryId = req.query.categoryId;
     const posts = await Post.findAll({
+      where: categoryId ? { categoryId } : {},
       include: [
         { model: User, attributes: ["id", "username"] },
         { model: Category, attributes: ["id", "category_name"] },
