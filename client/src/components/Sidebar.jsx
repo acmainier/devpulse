@@ -2,10 +2,12 @@ import { useAuth } from "../context/AuthContext";
 import Auth from "./Auth";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export function Sidebar() {
   const { user, loading } = useAuth();
   const token = user ? localStorage.getItem("token") : null;
+  const navigate = useNavigate();
 
   const [result, setResult] = useState(
     token
@@ -57,6 +59,14 @@ export function Sidebar() {
     );
   }
 
+  function onSearch(event) {
+    event.preventDefault();
+    const query = event.target[0].value;
+    if (query) {
+      navigate(`/feed?q=${encodeURIComponent(query)}`);
+    }
+  }
+
   return (
     <aside className="sidebar">
       <p>Check posts by category</p>
@@ -72,6 +82,11 @@ export function Sidebar() {
           <Link to={`/feed`}>All Categories</Link>
         </li>
       </ul>
+      <form onSubmit={onSearch}>
+        <input id="search" type="text" placeholder="Search posts..." />
+
+        <button type="submit">Search</button>
+      </form>
     </aside>
   );
 }

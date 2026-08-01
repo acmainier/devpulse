@@ -14,6 +14,7 @@ function Feed() {
   );
   const [searchParams] = useSearchParams();
   const categoryId = searchParams.get("categoryId");
+  const searchQuery = searchParams.get("q");
   console.log("categoryId:", categoryId);
 
   useEffect(() => {
@@ -23,6 +24,9 @@ function Feed() {
     const postsUrl = new URL(`http://localhost:3001/api/posts`);
     if (categoryId) {
       postsUrl.searchParams.append("categoryId", categoryId);
+    }
+    if (searchQuery) {
+      postsUrl.searchParams.append("q", searchQuery);
     }
     fetch(postsUrl, {
       headers: {
@@ -41,7 +45,7 @@ function Feed() {
       .catch((error) => {
         setResult({ state: "error", error });
       });
-  }, [token, categoryId]);
+  }, [token, categoryId, searchQuery]);
 
   if (result.state === "loading") {
     return <div>Loading...</div>;
