@@ -19,7 +19,7 @@ export function Nav() {
               <NavLink to="/feed">Feed</NavLink>
             </li>
             <li>
-              <NavLink to="/newpost">New post</NavLink>
+              <NavLink to="/posts/new">New post</NavLink>
             </li>
           </ul>
           <p>Logged in as {user.username}</p>

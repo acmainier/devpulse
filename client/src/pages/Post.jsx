@@ -1,11 +1,13 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Post() {
   const { user } = useAuth();
   const token = user ? localStorage.getItem("token") : null;
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [result, setResult] = useState(
     token
@@ -37,6 +39,29 @@ function Post() {
       });
   }, [id, token]);
 
+  function handleDelete() {
+    if (!token) {
+      return;
+    }
+    fetch(`http://localhost:3001/api/posts/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Failed to delete post ${id}`);
+        }
+        alert("Post deleted successfully");
+        navigate("/feed"); // Redirect to feed after deletion
+      })
+      .catch((error) => {
+        console.error("Error deleting post:", error);
+        alert("Failed to delete post");
+      });
+  }
+
   if (result.state === "loading") {
     return <div>Loading...</div>;
   }
@@ -49,6 +74,8 @@ function Post() {
     return <div>Post not found!</div>;
   }
 
+  const isUserPostOwner = user && result.post.user.id === user.id;
+
   return (
     <div>
       <h1>{result.post.title}</h1>
@@ -58,6 +85,7 @@ function Post() {
         {new Date(result.post.createdAt).toLocaleDateString()}
       </p>
       <p>{result.post.content}</p>
+      {isUserPostOwner && <button onClick={handleDelete}>Delete Post</button>}
     </div>
   );
 }
