@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 
 export function Sidebar() {
-  const { user, loading } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const token = user ? localStorage.getItem("token") : null;
   const navigate = useNavigate();
 
-  const [result, setResult] = useState(
+  const [categoryResult, setCategoryResult] = useState(
     token
       ? { state: "loading" }
       : { state: "error", error: new Error("User not authenticated") },
@@ -31,22 +31,14 @@ export function Sidebar() {
         return response.json();
       })
       .then((categories) => {
-        setResult({ state: "success", categories });
+        setCategoryResult({ state: "success", categories });
       })
       .catch((error) => {
-        setResult({ state: "error", error });
+        setCategoryResult({ state: "error", error });
       });
   }, [token]);
 
-  if (result.state === "loading") {
-    return <div>Loading...</div>;
-  }
-
-  if (result.state === "error") {
-    return <div>Error: {result.error.message}</div>;
-  }
-
-  if (loading) return <aside className="sidebar" />; // avoid a flash of the login form before the token check resolves
+  if (authLoading) return <aside className="sidebar" />; // avoid a flash of the login form before the token check resolves
 
   if (!user) {
     return (
@@ -56,6 +48,16 @@ export function Sidebar() {
         </p>
         <Auth />
       </aside>
+    );
+  }
+
+  if (categoryResult.state === "loading") {
+    return <div>Categories are loading...</div>;
+  }
+
+  if (categoryResult.state === "error") {
+    return (
+      <div>Error retreiving categories: {categoryResult.error.message}</div>
     );
   }
 
@@ -71,7 +73,7 @@ export function Sidebar() {
     <aside className="sidebar">
       <p>Browse posts by category</p>
       <ul>
-        {result.categories.map((category) => (
+        {categoryResult.categories.map((category) => (
           <li key={category.id}>
             <Link to={`/feed?categoryId=${category.id}`}>
               {category.category_name}
