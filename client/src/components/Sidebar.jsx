@@ -10,7 +10,7 @@ export function Sidebar() {
   const navigate = useNavigate();
 
   const [categoryResult, setCategoryResult] = useState(
-    token
+    authLoading || token
       ? { state: "loading" }
       : { state: "error", error: new Error("User not authenticated") },
   );
