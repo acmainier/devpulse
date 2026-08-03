@@ -3,6 +3,7 @@ import Auth from "./Auth";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
+import "./Sidebar.css";
 
 export function Sidebar() {
   const { user, loading: authLoading } = useAuth();

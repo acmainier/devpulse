@@ -3,8 +3,7 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  padding: 24px;
-  padding-left: 34px;
+  padding: 8px;
 }
 
 .header-inner h1 {
