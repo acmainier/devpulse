@@ -5,7 +5,7 @@ export function Header() {
   return (
     <header>
       <div className="header-inner">
-        <h1>DevPulse</h1>
+        <h1>Welcome to DevPulse</h1>
         <Nav />
       </div>
     </header>

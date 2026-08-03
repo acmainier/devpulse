@@ -5,7 +5,6 @@ function Home() {
   return (
     <>
       <div className="welcome-area">
-        <h1>Welcome to DevPulse</h1>
         <img
           src={devPulse}
           alt="DevPulse logo header image"
