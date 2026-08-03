@@ -4,7 +4,11 @@
 
 const sequelize = require("../config/connection");
 const { User, Category, Post } = require("../models");
-const { seedUser, categories: categoryNames, posts } = require("./seed.json");
+const {
+  users: seedUsers,
+  categories: categoryNames,
+  posts,
+} = require("./seed.json");
 
 async function seed() {
   await sequelize.sync();
@@ -16,10 +20,14 @@ async function seed() {
   await Category.destroy({ where: {} });
 
   // findOrCreate so re-running this script doesn't fail on a duplicate user
-  const [user] = await User.findOrCreate({
-    where: { email: seedUser.email },
-    defaults: seedUser,
-  });
+  const userMap = {};
+  for (const seedUser of seedUsers) {
+    const [user] = await User.findOrCreate({
+      where: { email: seedUser.email },
+      defaults: seedUser,
+    });
+    userMap[seedUser.username] = user.id;
+  }
 
   const categoryMap = {};
   for (const name of categoryNames) {
@@ -32,12 +40,17 @@ async function seed() {
       title: post.title,
       content: post.content,
       categoryId: categoryMap[post.category],
-      userId: user.id,
+      userId: userMap[post.author],
     })),
   );
 
-  console.log(`Seeded ${categoryNames.length} categories and ${posts.length} posts.`);
-  console.log(`Seed user: ${seedUser.email} / ${seedUser.password}`);
+  console.log(
+    `Seeded ${seedUsers.length} users, ${categoryNames.length} categories, and ${posts.length} posts.`,
+  );
+  console.log("Seed users (same password for all):");
+  for (const seedUser of seedUsers) {
+    console.log(`  ${seedUser.email} / ${seedUser.password}`);
+  }
   process.exit(0);
 }
 
