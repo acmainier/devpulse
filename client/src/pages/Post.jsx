@@ -86,6 +86,11 @@ function Post() {
       </p>
       <p>{result.post.content}</p>
       {isUserPostOwner && <button onClick={handleDelete}>Delete Post</button>}
+      {isUserPostOwner && (
+        <button onClick={() => navigate(`/posts/edit/${id}`)}>
+          Update Post
+        </button>
+      )}
     </div>
   );
 }
