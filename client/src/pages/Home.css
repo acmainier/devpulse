@@ -30,7 +30,10 @@
 }
 
 .welcome-banner {
-    width: 100%;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
     box-sizing: border-box;
     border: 1px solid var(--border);
     box-shadow:

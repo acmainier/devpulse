@@ -4,9 +4,7 @@ import devPulse from "../assets/images/devpulse2.jpg";
 function Home() {
   return (
     <>
-      <div className="welcome-area">
-        <img src={devPulse} alt="DevPulse logo header image" className="welcome-banner" />
-      </div>
+      {/* <div className="welcome-area"></div> */}
       <div className="card-area">
         <div className="left-card">
           <h3>Title</h3>

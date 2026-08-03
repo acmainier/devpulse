@@ -9,11 +9,7 @@ export function Sidebar() {
   const token = user ? localStorage.getItem("token") : null;
   const navigate = useNavigate();
 
-  const [result, setResult] = useState(
-    token
-      ? { state: "loading" }
-      : { state: "error", error: new Error("User not authenticated") },
-  );
+const [categoryResult, setCategoryResult] = useState({ state: "loading", categories: [] });
 
   useEffect(() => {
     if (!token) {
