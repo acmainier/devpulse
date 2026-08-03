@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 export function PostForm({ onSubmit, initialValues, submitLabel = "Create" }) {
   const { user, loading: authLoading } = useAuth();
@@ -67,6 +68,12 @@ export function PostForm({ onSubmit, initialValues, submitLabel = "Create" }) {
       </div>
       <div>
         <label htmlFor="content">Content:</label>
+        <p className="hint">
+          Tip: this field supports Markdown. Check{" "}
+          <Link to="https://commonmark.org/help/">the Markdown guide</Link> for
+          info; for syntax highlighting, wrap code in triple backticks with a
+          language name (e.g. ```js) .
+        </p>
         <textarea
           id="content"
           name="content"
