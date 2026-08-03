@@ -1,40 +1,177 @@
 {
-  "seedUser": {
-    "username": "seeduser",
-    "email": "seeduser@example.com",
-    "password": "password123"
-  },
-  "categories": ["Backend", "Frontend", "DevOps"],
+  "users": [
+    {
+      "username": "jess_codes",
+      "email": "jess.codes@example.com",
+      "password": "password123"
+    },
+    {
+      "username": "raj_builds",
+      "email": "raj.builds@example.com",
+      "password": "password123"
+    },
+    {
+      "username": "senior_sam",
+      "email": "sam.whitfield@example.com",
+      "password": "password123"
+    },
+    {
+      "username": "coffeeandcss",
+      "email": "elena.novak@example.com",
+      "password": "password123"
+    }
+  ],
+  "categories": ["React", "JavaScript", "CSS", "GitHub", "jQuery"],
   "posts": [
     {
-      "title": "Getting started with Express middleware",
-      "content": "Middleware functions run before your route handlers and can inspect, modify, or reject a request. Auth checks, logging, and body parsing are all classic use cases.",
-      "category": "Backend"
+      "title": "My first week with React: from confused to obsessed",
+      "content": "I started this job three weeks ago knowing barely any React, and honestly the first two days were just me staring at JSX wondering why HTML and JavaScript were on a first-name basis. Then I built my first component that actually re-rendered when I clicked a button and I did a small fist pump at my desk. Props still trip me up sometimes but I'm getting there, one console.log at a time.",
+      "category": "React",
+      "author": "jess_codes"
     },
     {
-      "title": "Why we switched from Mongoose to Sequelize",
-      "content": "MongoDB is great for flexible schemas, but once we needed real foreign keys between users, posts, and categories, a relational database made the relationships much easier to enforce.",
-      "category": "Backend"
+      "title": "Why useEffect cleanup functions saved my sanity",
+      "content": "I spent an embarrassing amount of time debugging a memory leak that turned out to be an event listener I never removed. Once I started returning a cleanup function from every effect that subscribes to something, half my weird bugs disappeared overnight.\n\n```jsx\nuseEffect(() => {\n  const handleResize = () => setWidth(window.innerWidth);\n  window.addEventListener('resize', handleResize);\n\n  return () => window.removeEventListener('resize', handleResize);\n}, []);\n```\n\nIf your effect subscribes, it should also unsubscribe. It's not glamorous but it'll save you a very confusing Friday.",
+      "category": "React",
+      "author": "senior_sam"
     },
     {
-      "title": "Understanding JWTs in 5 minutes",
-      "content": "A JSON Web Token is a signed, not encrypted, blob of data. Anyone can read the payload, but only your server can verify it was actually issued by you.",
-      "category": "Backend"
+      "title": "Building a debounced search input with useState + useEffect",
+      "content": "Nobody wants to hit the API on every single keystroke, so here's the pattern I reach for whenever I need a search box that doesn't hammer the backend.\n\n```jsx\nfunction useDebouncedValue(value, delay = 400) {\n  const [debounced, setDebounced] = useState(value);\n\n  useEffect(() => {\n    const timer = setTimeout(() => setDebounced(value), delay);\n    return () => clearTimeout(timer);\n  }, [value, delay]);\n\n  return debounced;\n}\n```\n\nDrop that in a search component, only fire the fetch when the debounced value changes, and your network tab will thank you.",
+      "category": "React",
+      "author": "raj_builds"
     },
     {
-      "title": "Controlled inputs in React, explained",
-      "content": "A controlled input ties its displayed value directly to React state, so the UI and your data can never drift out of sync — every keystroke updates state, which re-renders the input.",
-      "category": "Frontend"
+      "title": "Custom hooks are just functions wearing a trench coat",
+      "content": "It took me way too long to realize a custom hook is just a regular function that happens to call other hooks. That's it. That's the whole secret.\n\n```jsx\nfunction useToggle(initialValue = false) {\n  const [value, setValue] = useState(initialValue);\n  const toggle = () => setValue((v) => !v);\n  return [value, toggle];\n}\n```\n\nOnce that clicked for me I stopped being scared of writing my own and now I have about twelve of them scattered across every project I touch.",
+      "category": "React",
+      "author": "jess_codes"
     },
     {
-      "title": "Why we built a custom axios wrapper",
-      "content": "Instead of repeating auth headers on every request, one preconfigured axios instance with interceptors handles attaching the token and catching 401s in a single place.",
-      "category": "Frontend"
+      "title": "Context API vs prop drilling: a love story gone wrong",
+      "content": "We drilled a single boolean through six components before someone finally said 'why don't we just use Context.' Here's roughly what that refactor looked like.\n\n```jsx\nconst ThemeContext = createContext('light');\n\nfunction App() {\n  const [theme, setTheme] = useState('light');\n  return (\n    <ThemeContext.Provider value={{ theme, setTheme }}>\n      <Dashboard />\n    </ThemeContext.Provider>\n  );\n}\n```\n\nContext isn't a replacement for real state management, but for stuff like theme or auth it's saved us from a lot of unnecessary prop chains.",
+      "category": "React",
+      "author": "coffeeandcss"
     },
     {
-      "title": "Zero-downtime deploys with GitHub Actions",
-      "content": "Running migrations and restarting the server in the wrong order is the most common way to take a site down during a deploy. Here's the sequencing we settled on.",
-      "category": "DevOps"
+      "title": "Key prop mistakes that will haunt your console",
+      "content": "Using the array index as a key felt harmless until items started reordering and our list animations turned into chaos. Lesson learned the hard way.\n\n```jsx\n{items.map((item) => (\n  <ListItem key={item.id} data={item} />\n))}\n```\n\nUse something stable and unique, not the index, not Math.random(), and definitely not the item's name if two items can share one. React's diffing algorithm is only as good as the keys you give it.",
+      "category": "React",
+      "author": "raj_builds"
+    },
+    {
+      "title": "Why I still get excited about closures after 10 years",
+      "content": "I know closures are JavaScript 101, but every time I explain one to a junior on the team and watch it click for them, I get a little rush. A function remembering the variables from where it was created, even after that outer function has finished running, still feels a bit like magic even though I understand exactly why it works. Ten years in and I have not gotten bored of this language yet.",
+      "category": "JavaScript",
+      "author": "senior_sam"
+    },
+    {
+      "title": "Array methods that changed how I write loops",
+      "content": "I used to reach for a for loop by default until a coworker gently pointed out that half my loops were just map or filter in disguise.\n\n```js\nconst prices = items.map((item) => item.price);\nconst inStock = items.filter((item) => item.quantity > 0);\nconst total = prices.reduce((sum, price) => sum + price, 0);\n```\n\nNow I barely write a raw for loop unless I actually need to break out early. My code reads more like a sentence now, which honestly still surprises me.",
+      "category": "JavaScript",
+      "author": "jess_codes"
+    },
+    {
+      "title": "Debouncing vs throttling, finally explained",
+      "content": "I mixed these two up for way too long, so here's the distinction that finally stuck for me: debounce waits until things go quiet, throttle just limits how often something can fire.\n\n```js\nfunction throttle(fn, limit) {\n  let waiting = false;\n  return (...args) => {\n    if (!waiting) {\n      fn(...args);\n      waiting = true;\n      setTimeout(() => (waiting = false), limit);\n    }\n  };\n}\n```\n\nDebounce for search inputs, throttle for scroll or resize handlers. That's the rule of thumb I use now.",
+      "category": "JavaScript",
+      "author": "raj_builds"
+    },
+    {
+      "title": "Async/await made me stop fearing promises",
+      "content": "Callback hell was scary, then .then() chains got confusing fast once you had more than three of them, and then async/await showed up and everything suddenly read top to bottom like normal code.\n\n```js\nasync function getUser(id) {\n  try {\n    const response = await fetch(`/api/users/${id}`);\n    if (!response.ok) throw new Error('User not found');\n    return await response.json();\n  } catch (err) {\n    console.error('Failed to fetch user:', err.message);\n  }\n}\n```\n\nIt's still a promise under the hood, but my brain can finally follow along.",
+      "category": "JavaScript",
+      "author": "jess_codes"
+    },
+    {
+      "title": "Destructuring is basically magic and I love it",
+      "content": "The first time I saw destructuring in a code review I thought it looked unnecessarily fancy. Now I can't imagine writing JavaScript without it.\n\n```js\nconst { title, author, category = 'Uncategorized' } = post;\nconst [first, second, ...rest] = tags;\n```\n\nDefault values, renaming, nested destructuring, pulling props straight out of a function argument. It's the kind of syntax sugar that actually makes code easier to read, not harder.",
+      "category": "JavaScript",
+      "author": "coffeeandcss"
+    },
+    {
+      "title": "Optional chaining saved my Friday afternoon",
+      "content": "Somewhere deep in a nested API response, one field was occasionally missing, and our app was throwing 'cannot read property of undefined' at the worst possible times.\n\n```js\nconst city = user?.address?.city ?? 'Unknown';\n```\n\nOne line, no more defensive if-chains, no more crashes. I added this everywhere touching that API response and went home on time for once.",
+      "category": "JavaScript",
+      "author": "senior_sam"
+    },
+    {
+      "title": "Flexbox vs Grid: an unnecessary rivalry",
+      "content": "People argue about this like you have to pick a side forever. I use Flexbox for one-dimensional layouts, like a row of buttons or a navbar, and Grid the second I'm arranging things in both rows and columns. They're not rivals, they're just tools for different shaped problems, and most real layouts end up using both at once anyway.",
+      "category": "CSS",
+      "author": "coffeeandcss"
+    },
+    {
+      "title": "CSS variables for a one-line dark mode toggle",
+      "content": "Before CSS custom properties, dark mode meant maintaining two nearly-identical stylesheets. Now it's one variable swap.\n\n```css\n:root {\n  --bg-color: #ffffff;\n  --text-color: #1a1a1a;\n}\n\n[data-theme='dark'] {\n  --bg-color: #121212;\n  --text-color: #f5f5f5;\n}\n\nbody {\n  background: var(--bg-color);\n  color: var(--text-color);\n}\n```\n\nToggle a data attribute on the html tag with a tiny bit of JS and the whole theme flips instantly.",
+      "category": "CSS",
+      "author": "coffeeandcss"
+    },
+    {
+      "title": "Centering a div: the eternal struggle, finally solved",
+      "content": "This used to be the joke that every developer knew, nobody could reliably center a div. Turns out we just needed better tools.\n\n```css\n.center {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 100vh;\n}\n```\n\nThree lines and it's centered both ways, every time. I genuinely don't understand how we survived on table layouts and negative margins.",
+      "category": "CSS",
+      "author": "jess_codes"
+    },
+    {
+      "title": "Animations with keyframes that don't make me nauseous",
+      "content": "My first attempt at a CSS animation looked like a strobe light. Turns out easing and duration matter a lot more than I gave them credit for.\n\n```css\n@keyframes fadeInUp {\n  from {\n    opacity: 0;\n    transform: translateY(12px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n.card {\n  animation: fadeInUp 0.3s ease-out;\n}\n```\n\nSubtle, short, and it makes the whole page feel more polished without anyone consciously noticing why.",
+      "category": "CSS",
+      "author": "raj_builds"
+    },
+    {
+      "title": "Container queries are the feature I didn't know I needed",
+      "content": "Media queries respond to the viewport, but components rarely care about the whole viewport, they care about the space they've actually been given.\n\n```css\n.card-container {\n  container-type: inline-size;\n}\n\n@container (min-width: 400px) {\n  .card {\n    flex-direction: row;\n  }\n}\n```\n\nNow a card can lay itself out differently depending on whether it's in a narrow sidebar or a wide main column, without caring what the browser window is doing.",
+      "category": "CSS",
+      "author": "senior_sam"
+    },
+    {
+      "title": "The commit message that haunts me to this day",
+      "content": "Early in my career I pushed a commit with the message 'fix' to a shared branch, right before a demo, with zero context about what was actually fixed. My tech lead still brings it up in retrospectives, years later, as the platonic ideal of what not to do. These days I write commit messages assuming a stranger will read them at 2am trying to figure out why production is on fire, because eventually, that stranger is me.",
+      "category": "GitHub",
+      "author": "raj_builds"
+    },
+    {
+      "title": "A .gitignore snippet that saved me from committing node_modules again",
+      "content": "I have, on more than one occasion, committed node_modules to a repo and made everyone's pull request diff unreadable. Here's the bare minimum I now paste into every new project before writing a single line of code.\n\n```text\nnode_modules/\n.env\ndist/\n.DS_Store\n*.log\n```\n\nFive lines, saved me an equal number of apologies in team chat.",
+      "category": "GitHub",
+      "author": "jess_codes"
+    },
+    {
+      "title": "GitHub Actions workflow for running tests on every PR",
+      "content": "We kept merging PRs that quietly broke the test suite because nobody ran it locally before merging. This workflow fixed that for us in about fifteen minutes.\n\n```yaml\nname: CI\non: [pull_request]\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n      - run: npm ci\n      - run: npm test\n```\n\nNow a red X shows up right on the PR if something's broken, and nobody can pretend they didn't see it.",
+      "category": "GitHub",
+      "author": "senior_sam"
+    },
+    {
+      "title": "My favorite git aliases after years of typos",
+      "content": "I misspell 'checkout' at least once a day, so eventually I gave in and set up aliases for the commands I run constantly.\n\n```bash\ngit config --global alias.co checkout\ngit config --global alias.st status\ngit config --global alias.lg \"log --oneline --graph --all\"\n```\n\n`git lg` in particular has replaced at least three different GUI tools I used to rely on just to understand a messy branch history.",
+      "category": "GitHub",
+      "author": "coffeeandcss"
+    },
+    {
+      "title": "Confession: I still have a soft spot for jQuery",
+      "content": "I know, I know. But there was something genuinely satisfying about $(this).fadeOut() just working, no build step, no bundler config, no hooks to think about. It's not what I reach for in a modern React app, but for a quick static page or a tiny widget, I still sometimes default to it out of pure muscle memory, and I'm not embarrassed about it anymore.",
+      "category": "jQuery",
+      "author": "senior_sam"
+    },
+    {
+      "title": "The $(document).ready() habit I can't quit",
+      "content": "Old habits die hard, and this is the one line of jQuery that's permanently burned into my fingers from years of maintaining legacy admin panels.\n\n```js\n$(document).ready(function () {\n  $('.dropdown-toggle').on('click', function () {\n    $(this).next('.dropdown-menu').toggleClass('open');\n  });\n});\n```\n\nModern frameworks have better patterns for this, obviously, but for a quick fix on a decade-old codebase, this still gets the job done in under a minute.",
+      "category": "jQuery",
+      "author": "raj_builds"
+    },
+    {
+      "title": "Toggling classes like it's 2012 and loving it",
+      "content": "Our internal tools dashboard still runs on jQuery and honestly, for what it does, it doesn't need a rewrite. Toggling a sidebar is still this satisfying.\n\n```js\n$('#sidebar-toggle').click(function () {\n  $('#sidebar').toggleClass('collapsed');\n  $(this).toggleClass('active');\n});\n```\n\nNo virtual DOM, no state management, just a class flipping on click. Sometimes the simple tool really is the right tool.",
+      "category": "jQuery",
+      "author": "jess_codes"
+    },
+    {
+      "title": "Chaining jQuery methods: satisfying or unreadable?",
+      "content": "There's a specific kind of joy in chaining five jQuery methods on one line, and a specific kind of regret six months later when you have to debug it.\n\n```js\n$('.alert')\n  .fadeIn(200)\n  .delay(3000)\n  .fadeOut(200, function () {\n    $(this).remove();\n  });\n```\n\nIt reads beautifully the day you write it. Whether future-you agrees is a separate question entirely.",
+      "category": "jQuery",
+      "author": "coffeeandcss"
     }
   ]
 }
