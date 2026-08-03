@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 
-export function PostForm({ onSubmit }) {
+export function PostForm({ onSubmit, initialValues, submitLabel = "Create" }) {
   const { user, loading: authLoading } = useAuth();
   const token = user ? localStorage.getItem("token") : null;
+
+  const {
+    title: initialTitle = "",
+    content: initialContent = "",
+    categoryId: initialCategoryId,
+  } = initialValues ?? {};
 
   const [categoryResult, setCategoryResult] = useState(
     authLoading || token
@@ -36,9 +42,11 @@ export function PostForm({ onSubmit }) {
   }, [token]);
 
   // Form Inputs using state
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [categoryId, setCategoryId] = useState("1");
+  const [title, setTitle] = useState(initialTitle);
+  const [content, setContent] = useState(initialContent);
+  const [categoryId, setCategoryId] = useState(
+    initialCategoryId != null ? String(initialCategoryId) : "1",
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -88,7 +96,7 @@ export function PostForm({ onSubmit }) {
           </>
         )}
       </div>
-      <button type="submit">Create</button>
+      <button type="submit">{submitLabel}</button>
     </form>
   );
 }
