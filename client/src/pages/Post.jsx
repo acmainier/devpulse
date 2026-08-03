@@ -2,6 +2,9 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
+import "highlight.js/styles/github-dark.css";
+import rehypeHighlight from "rehype-highlight";
 
 function Post() {
   const { user } = useAuth();
@@ -84,7 +87,9 @@ function Post() {
         {result.post.category.category_name} on{" "}
         {new Date(result.post.createdAt).toLocaleDateString()}
       </p>
-      <p>{result.post.content}</p>
+      <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+        {result.post.content}
+      </ReactMarkdown>
       {isUserPostOwner && <button onClick={handleDelete}>Delete Post</button>}
       {isUserPostOwner && (
         <button onClick={() => navigate(`/posts/edit/${id}`)}>
