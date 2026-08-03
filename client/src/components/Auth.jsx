@@ -52,7 +52,7 @@ function Auth() {
 
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
-      <h1>{isRegister ? "Sign Up" : "Log In"}</h1>
+      <h2 className="form-header">{isRegister ? "Sign Up" : "Log In"}</h2>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 

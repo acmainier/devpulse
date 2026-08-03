@@ -1,5 +1,15 @@
 .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     padding: 8px;
+}
+
+.auth-form button[type="submit"] {
+    align-self: flex-start;
+    border-radius: 8px;
+    margin-top: 8px;
+    padding: 4px 12px;
 }
 
 .auth-field {
@@ -11,6 +21,7 @@
 .auth-field input {
     flex: 1;
     align-self: center;
+    margin-right: 18px;
 }
 
 .auth-field label {
@@ -21,4 +32,19 @@
 .auth-toggle {
     text-align: left;
     margin-top: 10px;
+}
+
+.auth-toggle button {
+    border-radius: 8px;
+    margin-top: 8px;
+    padding: 4px 12px;
+    margin-left: 8px;
+}
+
+.form-header {
+    text-align: center;
+}
+
+.sidebar-intro {
+    margin-bottom: 8px;
 }
