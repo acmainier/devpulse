@@ -15,3 +15,11 @@
 .header-inner nav {
   justify-self: center;
 }
+
+.h1-welcome {
+    color: #d4af37;
+    text-shadow:
+    0 0 8px rgba(74, 222, 128, 0.6),
+    0 0 16px rgba(34, 211, 238, 0.4),
+    0 0 24px rgba(168, 85, 247, 0.3);
+}

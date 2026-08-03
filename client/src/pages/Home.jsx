@@ -5,11 +5,7 @@ function Home() {
   return (
     <>
       <div className="welcome-area">
-        <img
-          src={devPulse}
-          alt="DevPulse logo header image"
-          className="welcome-banner"
-        />
+        <img src={devPulse} alt="DevPulse logo header image" className="welcome-banner" />
       </div>
       <div className="card-area">
         <div className="left-card">
