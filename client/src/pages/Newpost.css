@@ -1,11 +1,25 @@
+main {
+    margin-left: 20px;
+}
+
 .container {
     display: flex;
     flex-direction: column;
     margin-top: 10px;
 }
 
+.container button[type="submit"] {
+    align-self: flex-start;
+    width: 80px;
+    padding: 8px 0;
+    border-radius: 8px;
+    text-decoration: none;
+    background: rgba(168, 85, 247, 0.3);
+    border: 2px solid rgba(74, 222, 128, 0.6);
+}
+
 .container h2 {
-    color: rgba(34, 211, 238, 0.4);
+    color: rgb(18, 124, 210);
 }
 
 .post-form {
@@ -36,9 +50,37 @@
 }
 
 .pf-content label {
-    color: rgba(34, 211, 238, 0.4);
+    color: rgb(18, 124, 210);
 }
 
 .pf-content p {
     color: rgba(74, 222, 128, 0.6);
+}
+
+.pf-content textarea {
+    align-self: flex-start;
+    width: 400px;
+    height: 150px;
+    margin: 10px 0;
+}
+
+.pf-category {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.pf-category label {
+    color: rgb(18, 124, 210);
+}
+
+.pf-category select {
+    align-self: flex-start;
+    width: 100px;
+    margin: 10px 0;
+    outline: none;
+    padding: 4px;
+    border-radius: 8px;
+    background: rgba(168, 85, 247, 0.3);
+    border: 2px solid rgba(74, 222, 128, 0.6);
 }
