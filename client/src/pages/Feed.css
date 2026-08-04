@@ -1,0 +1,22 @@
+.feed-area {
+    display: flex;
+    flex-direction: column;
+}
+
+.feed-area a {
+    color: rgba(74, 222, 128, 0.6);
+}
+
+.feed-area li,
+.feed-area a {
+    text-decoration: none;
+    list-style: none;
+}
+
+.feed-area ul li:nth-child(odd) a {
+    color: rgba(74, 222, 128, 0.6);
+}
+
+.feed-area ul li:nth-child(even) a {
+    color: rgb(18, 124, 210);
+}

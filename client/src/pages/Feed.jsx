@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useSearchParams } from "react-router";
+import "./Feed.css";
 
 function Feed() {
   const { user } = useAuth();
@@ -60,8 +61,8 @@ function Feed() {
   }
 
   return (
-    <div>
-      <h1>Feed</h1>
+    <div className="feed-area">
+      <h2>Post Feed</h2>
       <ul>
         {categoryId && <li>Showing posts in category: {categoryId}</li>}
         {searchQuery && <li>Showing search results for: {searchQuery}</li>}
