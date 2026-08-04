@@ -1,0 +1,31 @@
+.feed-button {
+    display: inline-block;
+    border-radius: 8px;
+    margin: 8px 0;
+    padding: 2px 20px;
+    text-decoration: none;
+    background: rgba(168, 85, 247, 0.3);
+    border: 2px solid rgba(74, 222, 128, 0.6);
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.link-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.nav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.p-text {
+    color: rgba(34, 211, 238, 0.4);
+}
