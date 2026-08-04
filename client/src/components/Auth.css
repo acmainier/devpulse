@@ -10,6 +10,13 @@
     border-radius: 8px;
     margin-top: 8px;
     padding: 4px 12px;
+    transition: transform 2.8s ease;
+}
+
+.auth-form button[type="submit"]:hover {
+    animation: pulse-scale 1s ease-in-out infinite;
+    color: rgba(74, 222, 128, 0.6);
+
 }
 
 .auth-field {
@@ -22,6 +29,12 @@
     flex: 1;
     align-self: center;
     margin-right: 18px;
+    border: 2px solid rgba(168, 85, 247, 0.3);
+}
+
+.auth-field input:focus {
+    border: 1px solid rgba(74, 222, 128, 0.6);
+    outline: none;
 }
 
 .auth-field label {
@@ -39,6 +52,12 @@
     margin-top: 8px;
     padding: 4px 12px;
     margin-left: 8px;
+    transition: transform 2.8s ease;
+}
+
+.auth-toggle button:hover {
+    animation: pulse-scale 1s ease-in-out infinite;
+    color: rgba(74, 222, 128, 0.6);
 }
 
 .form-header {
@@ -47,4 +66,13 @@
 
 .sidebar-intro {
     margin-bottom: 8px;
+}
+
+@keyframes pulse-scale {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.06);
+    }
 }
