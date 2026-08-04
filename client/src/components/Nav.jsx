@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import "./Nav.css";
 
 export function Nav() {
   const { user, logout } = useAuth();
@@ -13,17 +14,17 @@ export function Nav() {
   return (
     <nav>
       {user && (
-        <div>
-          <ul>
+        <div className="link-area">
+          <ul className="nav-list">
             <li>
-              <NavLink to="/feed">Feed</NavLink>
+              <NavLink className="feed-button" to="/feed">Feed</NavLink>
             </li>
             <li>
-              <NavLink to="/posts/new">New post</NavLink>
+              <NavLink className="feed-button" to="/posts/new">New post</NavLink>
             </li>
           </ul>
-          <p>Logged in as {user.username}</p>
-          <button onClick={handleLogout}>Log out</button>
+          <p className="p-text">Logged in as {user.username}</p>
+          <button className="feed-button" onClick={handleLogout}>Log out</button>
         </div>
       )}
     </nav>

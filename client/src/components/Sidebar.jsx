@@ -71,7 +71,7 @@ export function Sidebar() {
   }
 
   return (
-    <aside className="sidebar">
+    <aside className="sidebar sidebar--authenticated">
       <p>Browse posts by category</p>
       <ul>
         {categoryResult.categories.map((category) => (
