@@ -7,9 +7,19 @@
     color: rgba(74, 222, 128, 0.6);
 }
 
+.feed-area h2 {
+    margin-top: 10px;
+}
+
 .feed-area li,
 .feed-area a {
     text-decoration: none;
+    list-style: none;
+}
+
+.feed-area ul {
+    margin: 5px;
+    padding: 0;
     list-style: none;
 }
 
