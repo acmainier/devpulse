@@ -86,11 +86,13 @@ export function Sidebar() {
         </li>
       </ul>
       <p>Search posts' titles</p>
+      <div className="form-main">
       <form onSubmit={onSearch}>
         <input id="search" type="text" placeholder="Enter keywords..." />
 
         <button type="submit">Search</button>
       </form>
+      </div>
     </aside>
   );
 }
