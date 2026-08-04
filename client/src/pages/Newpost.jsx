@@ -1,6 +1,7 @@
 import { PostForm } from "../components/PostForm";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import "./Newpost.css";
 
 function Newpost() {
   const { user } = useAuth();
@@ -29,8 +30,8 @@ function Newpost() {
     });
   };
   return (
-    <div>
-      <h1>Create New Post</h1>
+    <div className="container">
+      <h2>Create New Post</h2>
       <PostForm onSubmit={handleSubmit} />
     </div>
   );
