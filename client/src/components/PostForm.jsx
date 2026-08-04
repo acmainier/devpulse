@@ -56,7 +56,7 @@ export function PostForm({ onSubmit, initialValues, submitLabel = "Create" }) {
 
   return (
     <form className="post-form" onSubmit={handleSubmit}>
-      <div>
+      <div className="pf-title">
         <label htmlFor="title">Title:</label>
         <input
           type="text"
@@ -66,7 +66,7 @@ export function PostForm({ onSubmit, initialValues, submitLabel = "Create" }) {
           onChange={(e) => setTitle(e.target.value)}
         />
       </div>
-      <div>
+      <div className="pf-content">
         <label htmlFor="content">Content:</label>
         <p className="hint">
           Tip: this field supports Markdown. Check{" "}
@@ -81,7 +81,7 @@ export function PostForm({ onSubmit, initialValues, submitLabel = "Create" }) {
           onChange={(e) => setContent(e.target.value)}
         ></textarea>
       </div>
-      <div>
+      <div className="pf-category">
         {categoryResult.state === "loading" && <p>Loading categories...</p>}
         {categoryResult.state === "error" && (
           <p>Error loading categories: {categoryResult.error.message}</p>

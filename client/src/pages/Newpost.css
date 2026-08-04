@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.container h2 {
+    color: rgba(34, 211, 238, 0.4);
+}
+
+.post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.pf-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pf-title label {
+    padding: 4px;
+    color: rgba(74, 222, 128, 0.6);
+}
+
+.pf-title input {
+    padding: 4px;
+}
+
+.pf-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.pf-content label {
+    color: rgba(34, 211, 238, 0.4);
+}
+
+.pf-content p {
+    color: rgba(74, 222, 128, 0.6);
+}
