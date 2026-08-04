@@ -10,11 +10,11 @@
     border-radius: 8px;
     margin-top: 8px;
     padding: 4px 12px;
-    transition: transform 2.8s ease;
+    transition: transform 0.2s ease;
 }
 
 .auth-form button[type="submit"]:hover {
-    animation: pulse-scale 1s ease-in-out infinite;
+    animation: pulse-scale 2s ease-in-out infinite;
     color: rgba(74, 222, 128, 0.6);
 
 }
@@ -56,7 +56,7 @@
 }
 
 .auth-toggle button:hover {
-    animation: pulse-scale 1s ease-in-out infinite;
+    animation: pulse-scale 2s ease-in-out infinite;
     color: rgba(74, 222, 128, 0.6);
 }
 
