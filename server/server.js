@@ -6,6 +6,8 @@ const sequelize = require("./config/connection"); // our configured MySQL connec
 const authRoutes = require("./routes/auth"); // register/login route handlers
 const postRoutes = require("./routes/post");
 const categoryRoutes = require("./routes/category");
+const commentRoutes = require("./routes/comment");
+
 const app = express();
 const PORT = process.env.PORT || 3001; // use env value if set, otherwise default to 3001
 
@@ -21,6 +23,7 @@ app.use(cors());
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/categories", categoryRoutes);
+app.use("/api", commentRoutes);
 
 // --- Start server ---
 // sequelize.sync() checks our models (like User) and creates the matching
