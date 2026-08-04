@@ -22,9 +22,20 @@
             0 0 18px rgba(168, 85, 247, 0.3); */
     border-radius: 10px;
     margin: 20px;
+    padding: 24px;
 }
 
 .welcome-area {
     display: flex;
+    justify-content: center;
     width: 100%;
+    max-width: 1650px;
+    margin: 20px auto 0 auto;
+    text-align: center;
+}
+
+.welcome-area p {
+    max-width: 700px;
+    font-size: 1.1rem;
+    line-height: 1.5;
 }
