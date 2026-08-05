@@ -1,3 +1,9 @@
 .footer-main {
   text-align: center;
 }
+
+@media (max-width: 768px) {
+    .footer-main {
+        margin-bottom: 20px;
+    }
+}

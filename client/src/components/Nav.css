@@ -31,3 +31,21 @@
 .p-text {
     color: rgba(34, 211, 238, 0.4);
 }
+
+@media (max-width: 400px) {
+    .link-area {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+
+    .feed-button {
+        margin: 4px 0;
+    }
+}

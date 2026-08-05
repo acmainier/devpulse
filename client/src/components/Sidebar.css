@@ -33,3 +33,9 @@
 .sidebar p {
     color: rgba(74, 222, 128, 0.6);
 }
+
+@media (max-width: 768px) {
+    #search {
+        margin-right: 20px;
+    }
+}
