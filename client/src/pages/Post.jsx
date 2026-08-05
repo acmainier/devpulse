@@ -151,9 +151,9 @@ function Post() {
       <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
         {result.post.content}
       </ReactMarkdown>
-      {isUserPostOwner && <button onClick={handleDelete}>Delete Post</button>}
+      {isUserPostOwner && <button className="post-action-btn" onClick={handleDelete}>Delete Post</button>}
       {isUserPostOwner && (
-        <button onClick={() => navigate(`/posts/edit/${id}`)}>
+        <button className="post-action-btn" onClick={() => navigate(`/posts/edit/${id}`)}>
           Update Post
         </button>
       )}
