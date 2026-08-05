@@ -1,0 +1,54 @@
+.comments-h3 {
+    margin: 0 0 20px 0;
+    color: rgb(18, 124, 210);
+}
+
+.comments-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.comments-form-container button {
+    align-self: flex-start;
+    padding: 8px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    background: rgba(168, 85, 247, 0.3);
+    border: 2px solid rgba(74, 222, 128, 0.6);
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.comments-form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.comments-form-container textarea {
+    width: 400px;
+    height: 150px;
+}
+
+.post-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.post-container h2 {
+    margin: 10px 0;
+    color: rgb(18, 124, 210);
+}
+
+.post-container p {
+    margin-bottom: 10px;
+    color: rgba(74, 222, 128, 0.6);
+}
+
+.post-container p:last-child {
+    margin-bottom: 0;
+    color: rgba(74, 222, 128, 0.6);
+}

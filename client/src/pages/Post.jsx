@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import "highlight.js/styles/github-dark.css";
 import rehypeHighlight from "rehype-highlight";
+import "./Post.css";
 
 function Post() {
   const { user } = useAuth();
@@ -140,8 +141,8 @@ function Post() {
   const isUserPostOwner = user && result.post.user.id === user.id;
 
   return (
-    <div>
-      <h1>{result.post.title}</h1>
+    <div className="post-container">
+      <h2>{result.post.title}</h2>
       <p>
         by {result.post.user.username} category:{" "}
         {result.post.category.category_name} on{" "}
@@ -157,8 +158,8 @@ function Post() {
         </button>
       )}
 
-      <div style={{ marginTop: "20px" }}>
-        <h3>Comments</h3>
+      <div className="comments-form-container">
+        <h3 className="comments-h3">Comments</h3>
 
         {token && (
           <form onSubmit={handleAddComment}>
@@ -174,11 +175,6 @@ function Post() {
         {comments.map((comment) => (
           <div
             key={comment.id}
-            style={{
-              borderTop: "1px solid gray",
-              marginTop: "10px",
-              paddingTop: "10px",
-            }}
           >
             <p>
               <strong>{comment.user.username}</strong>: {comment.content}
@@ -200,7 +196,7 @@ function Post() {
             )}
 
             {comment.replies.map((reply) => (
-              <div key={reply.id} style={{ marginLeft: "20px" }}>
+              <div key={reply.id}>
                 <p>
                   <strong>{reply.user.username}</strong>: {reply.content}
                 </p>
