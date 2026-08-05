@@ -32,6 +32,19 @@
     height: 150px;
 }
 
+.post-action-btn {
+    align-self: flex-start;
+    width: 120px;
+    padding: 8px 0;
+    margin-right: 10px;
+    border-radius: 8px;
+    background: rgba(168, 85, 247, 0.3);
+    border: 2px solid rgba(74, 222, 128, 0.6);
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
 .post-container {
     display: flex;
     flex-direction: column;
