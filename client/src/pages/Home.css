@@ -39,3 +39,38 @@
     font-size: 1.1rem;
     line-height: 1.5;
 }
+
+@media (max-width: 768px) {
+    .welcome-area {
+        box-sizing: border-box;
+        text-align: justify;
+        padding-right: 20px;
+    }
+
+    .welcome-area p {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .card-area {
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .left-card,
+    .right-card,
+    .mid-card {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: justify;
+        margin: 0;
+        padding: 0 20px 0 0;
+    }
+
+    .left-card h3,
+    .mid-card h3,
+    .right-card h3 {
+        margin-top: 4px;
+    }
+}

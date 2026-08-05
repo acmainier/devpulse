@@ -78,3 +78,16 @@ p {
   flex: 1;
   min-width: 0; /* prevents content overflow in flex children */
 }
+
+/* Responsive settings for sidebar content on smaller screens */
+@media (max-width: 768px) {
+    .layout-body {
+        flex-direction: column-reverse;
+    }
+
+    .layout-body aside {
+        flex: none;
+        width: 100%;
+        border-right: none;
+    }
+}
