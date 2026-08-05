@@ -7,6 +7,11 @@
   padding: 8px;
 }
 
+.header-inner a {
+    align-self: stretch;
+    display: flex;
+}
+
 .header-inner h1 {
   font-size: 32px;
   margin: 0;
@@ -17,6 +22,7 @@
 }
 
 .welcome-banner {
+    align-items: stretch;
     width: 100%;
     box-sizing: border-box;
     border: 1px solid var(--border);
