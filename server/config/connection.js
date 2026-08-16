@@ -1,3 +1,6 @@
+const fs = require("fs");
+const path = require("path");
+
 const { Sequelize } = require("sequelize");
 require("dotenv").config(); // loads variables from .env into process.env
 
@@ -10,7 +13,13 @@ const sequelize = new Sequelize(
   process.env.DB_PASSWORD, // MySQL password
   {
     host: process.env.DB_HOST, // where MySQL is running (e.g. "localhost")
+    port: process.env.DB_PORT, // where MySQL is running (e.g. "localhost")
     dialect: "mysql", // tells Sequelize which SQL engine to speak
+    dialectOptions: {
+      ssl: {
+        ca: fs.readFileSync(path.join(__dirname, "../certs/ca.pem")),
+      },
+    },
   },
 );
 
