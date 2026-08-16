@@ -35,6 +35,9 @@ export function PostForm({ onSubmit, initialValues, submitLabel = "Create" }) {
       })
       .then((categories) => {
         setCategoryResult({ state: "success", categories });
+        if (initialCategoryId == null && categories.length > 0) {
+          setCategoryId(String(categories[0].id));
+        }
       })
       .catch((error) => {
         console.error("Error fetching categories:", error);
@@ -46,7 +49,7 @@ export function PostForm({ onSubmit, initialValues, submitLabel = "Create" }) {
   const [title, setTitle] = useState(initialTitle);
   const [content, setContent] = useState(initialContent);
   const [categoryId, setCategoryId] = useState(
-    initialCategoryId != null ? String(initialCategoryId) : "1",
+    initialCategoryId != null ? String(initialCategoryId) : "",
   );
 
   const handleSubmit = (e) => {
