@@ -28,7 +28,7 @@ function Post() {
       return;
     }
 
-    fetch(`http://localhost:3001/api/posts/${id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/posts/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -51,7 +51,7 @@ function Post() {
     if (result.state !== "success") {
       return;
     }
-    fetch(`http://localhost:3001/api/posts/${id}/comments`, {
+    fetch(`${import.meta.env.VITE_API_URL}/posts/${id}/comments`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -64,7 +64,7 @@ function Post() {
     if (!token) {
       return;
     }
-    fetch(`http://localhost:3001/api/posts/${id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/posts/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -85,7 +85,7 @@ function Post() {
 
   function handleAddComment(e) {
     e.preventDefault();
-    fetch(`http://localhost:3001/api/posts/${id}/comments`, {
+    fetch(`${import.meta.env.VITE_API_URL}/posts/${id}/comments`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -94,7 +94,7 @@ function Post() {
       body: JSON.stringify({ content: newComment }),
     }).then(() => {
       setNewComment("");
-      fetch(`http://localhost:3001/api/posts/${id}/comments`, {
+      fetch(`${import.meta.env.VITE_API_URL}/posts/${id}/comments`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -106,7 +106,7 @@ function Post() {
 
   function handleAddReply(e, parentId) {
     e.preventDefault();
-    fetch(`http://localhost:3001/api/posts/${id}/comments`, {
+    fetch(`${import.meta.env.VITE_API_URL}/posts/${id}/comments`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -116,7 +116,7 @@ function Post() {
     }).then(() => {
       setReplyText("");
       setReplyingTo(null);
-      fetch(`http://localhost:3001/api/posts/${id}/comments`, {
+      fetch(`${import.meta.env.VITE_API_URL}/posts/${id}/comments`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -151,9 +151,16 @@ function Post() {
       <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
         {result.post.content}
       </ReactMarkdown>
-      {isUserPostOwner && <button className="post-action-btn" onClick={handleDelete}>Delete Post</button>}
       {isUserPostOwner && (
-        <button className="post-action-btn" onClick={() => navigate(`/posts/edit/${id}`)}>
+        <button className="post-action-btn" onClick={handleDelete}>
+          Delete Post
+        </button>
+      )}
+      {isUserPostOwner && (
+        <button
+          className="post-action-btn"
+          onClick={() => navigate(`/posts/edit/${id}`)}
+        >
           Update Post
         </button>
       )}
@@ -173,9 +180,7 @@ function Post() {
         )}
 
         {comments.map((comment) => (
-          <div
-            key={comment.id}
-          >
+          <div key={comment.id}>
             <p>
               <strong>{comment.user.username}</strong>: {comment.content}
             </p>

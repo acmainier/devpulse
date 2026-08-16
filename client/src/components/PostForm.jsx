@@ -22,7 +22,7 @@ export function PostForm({ onSubmit, initialValues, submitLabel = "Create" }) {
     if (!token) {
       return;
     }
-    fetch(`http://localhost:3001/api/categories`, {
+    fetch(`${import.meta.env.VITE_API_URL}/categories`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

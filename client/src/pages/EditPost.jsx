@@ -18,7 +18,8 @@ function EditPost() {
 
   useEffect(() => {
     if (!token) return;
-    fetch(`http://localhost:3001/api/posts/${id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/posts/${id}`
+      , {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => {
@@ -51,7 +52,7 @@ function EditPost() {
     if (!token) {
       return;
     }
-    fetch(`http://localhost:3001/api/posts/${id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/posts/${id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,

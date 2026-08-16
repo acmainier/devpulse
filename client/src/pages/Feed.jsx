@@ -22,7 +22,7 @@ function Feed() {
     if (!token) {
       return;
     }
-    const postsUrl = new URL(`http://localhost:3001/api/posts`);
+    const postsUrl = new URL(`${import.meta.env.VITE_API_URL}/posts`);
     if (categoryId) {
       postsUrl.searchParams.append("categoryId", categoryId);
     }

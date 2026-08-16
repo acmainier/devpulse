@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3001; // use env value if set, otherwise defaul
 // Parses incoming JSON request bodies and attaches the result to req.body.
 // Without this, req.body would be undefined in every route.
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: process.env.CLIENT_URL }));
 
 // --- Routes ---
 // Mounts each route file under its own API prefix.

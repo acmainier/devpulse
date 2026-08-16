@@ -13,7 +13,7 @@ function Newpost() {
     if (!token) {
       return;
     }
-    fetch("http://localhost:3001/api/posts", {
+    fetch(`${import.meta.env.VITE_API_URL}/posts`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

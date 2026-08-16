@@ -30,8 +30,8 @@ function Auth() {
 
     try {
       const url = isRegister
-        ? "http://localhost:3001/api/auth/register"
-        : "http://localhost:3001/api/auth/login";
+        ? `${import.meta.env.VITE_API_URL}/auth/register`
+        : `${import.meta.env.VITE_API_URL}/auth/login`;
 
       // Login only needs email/password, Register also sends username
       const payload = isRegister

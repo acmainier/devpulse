@@ -20,7 +20,7 @@ export function Sidebar() {
     if (!token) {
       return;
     }
-    fetch(`http://localhost:3001/api/categories`, {
+    fetch(`${import.meta.env.VITE_API_URL}/categories`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -87,11 +87,11 @@ export function Sidebar() {
       </ul>
       <p>Search posts' titles</p>
       <div className="form-main">
-      <form onSubmit={onSearch}>
-        <input id="search" type="text" placeholder="Enter keywords..." />
+        <form onSubmit={onSearch}>
+          <input id="search" type="text" placeholder="Enter keywords..." />
 
-        <button type="submit">Search</button>
-      </form>
+          <button type="submit">Search</button>
+        </form>
       </div>
     </aside>
   );
